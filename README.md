@@ -1,14 +1,28 @@
-# Target Redirector - A Burp Suite Extension
-[![Language](https://img.shields.io/badge/Lang-Kotlin-blue.svg)](https://kotlinlang.org)
-[![License](https://img.shields.io/badge/License-Apache%202.0-red.svg)](https://opensource.org/licenses/Apache-2.0)
+<img align="right" src="https://avatars0.githubusercontent.com/u/21125224?s=150&v=4">
 
-Target Redirector is a Burp Suite Extension which redirects all Burp requests destined for a chosen target to a different target of your choice. The hostname/IP, port and protocol (HTTP/HTTPS) can all be configured to an alternative destination. You can choose to leave the HTTP Host header intact or update it if necessary. Other HTTP headers and the body remain unaffected.
+# Target Redirector - A Burp Suite Extension
+[![BApp Store](https://img.shields.io/badge/BApp-Published-orange.svg)](https://portswigger.net/bappstore/d938ed20acbe4cd9889aa06bd23ba7e1)
+[![Language](https://img.shields.io/badge/Lang-Kotlin-blue.svg)](https://kotlinlang.org)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
+
+#### Redirects requests from ALL Burp areas, not just the proxy
+
+Target Redirector is a Burp Suite Extension written in Kotlin, which redirects all Burp requests destined for a chosen target to a different target of your choice. The hostname/IP, port and protocol (HTTP/HTTPS) can all be configured to an alternative destination. You can choose to leave the HTTP Host header intact or update it if necessary. Other HTTP headers and the body remain unaffected.
+
+> "the Redirector will save a bit of messing with routing and iptables"
+> -- *[@ticarpi](https://github.com/ticarpi)*
 
 ## Overview
 
 ![Target Redirector screenshot](images/title_screenshot.png)
 
-This plugin is useful in various situations where you want to force a particular target hostname/IP and/or port and protocol to be used. For example:
+This plugin is useful in various situations where you want to force a particular target hostname/IP and/or port and/or protocol to be used. Features include:
+
+- redirect all (or specific) http connections to https or vice-versa
+- redirect connections destined for any (or specific) host and/or port to a different host and/or port
+- alter host header
+
+Examples of use:
 
 - testing a staging/pre-production environment on a different host and/or port which insists on linking/redirecting you back to the production environment. you can add both environments to scope, and allow the scanner to scan all the referenced pages, but whilst ensuring that only the staging/pre-production targets are scanned
 - testing a web application which is protected by third-party DDOS protection/load balancers that present on the public URL. The third-party servers are not in scope so cannot be tested. A backend target IP/hostname has been provided, but the public URL is referenced all over the target web application
@@ -59,12 +73,16 @@ This project is still under development.
 - Source code optimisation
 
 #### Potential future features:
-- [x] Hostname resolution for invalid hostnames
-- [x] Replacing port as well as hostname
-- [x] Default host header
-- [ ] Custom host headers
+- [x] <s>Hostname resolution for invalid hostnames</s>
+- [x] <s>Replacing port as well as hostname</s>
+- [x] <s>Default host header</s>
+- [x] <s>Custom host headers</s>
+- [x] <s>Regex matching for host/port</s>
+- [x] <s>Case insensitivity of hostname</s>
+- [x] Flexible HTTP/HTTPS options
+- [x] Allow redirecting of any host/port
+- [x] Allow destination host or port to remain unchanged
 - [ ] Comment/highlight redirected requests 
-- [ ] Match all/Regex matching for search term
 - [ ] Multiple search terms/redirections
 - [ ] Save settings
 - [ ] Session handling actions / Burp tool scope
